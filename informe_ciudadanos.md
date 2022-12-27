@@ -37,9 +37,40 @@ Se creó un modelo de clasificación por cada capa definida en la sección anter
 Adicionalmente, se hizó análisis de sentimiento de los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis).
 Para el modelo de ciudadanos se utilizaron 3 modelos de esta librería para realizar diferentes tipos de análisis.
 
-1. Análisis de sentimiento
-2. Análisis de emociones
-3. Análisis de discurso de odio.
+1. **Análisis de sentimiento**
+  - 1.1. Clases usadas en el modelo:
+  
+    · Negativo
+    
+    · Neutral
+    
+    · Positivo
+    
+2. **Análisis de emociones**
+  - 2.1. Clases usadas en el modelo:
+  
+    · Joy
+    
+    · Sadness
+    
+    · Disguts
+    
+    · Anger
+    
+    · Surprise
+    
+    · Fear
+    
+    · Others
+    
+3. **Análisis de discurso de odio**
+  - 3.1. Clases usadas en el modelo:
+  
+    · Hatefull
+    
+    · Targeted
+    
+    · Agressive
 
 ### 3.1 Preprocesamiento
 
