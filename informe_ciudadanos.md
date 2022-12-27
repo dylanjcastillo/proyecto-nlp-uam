@@ -4,7 +4,7 @@
 
 El objetivo principal de este proyecto es clasificar los tweets publicados por ciudadanos en respuesta a tweets publicados por los ayuntamientos españoles en base a una taxonomías determinada, utilizando modelos de Aprendizaje Automático (Machine Learning), para el análisis posterior de dichos tweets.
 
-Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadadis en respuesta o con mención a las cuentas oficiales de los distintitos ayuntamientos españoles a través de la API de twitter, una vez obtenidos los datos se procedió al etiquetado de una muestra representativa de estos para poder entrenar modelos que permita etiquetar el resto de los tweets.
+Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los distintitos ayuntamientos españoles a través de la API de twitter, una vez obtenidos los datos se procedió al etiquetado de una muestra representativa de estos para poder entrenar modelos que permita etiquetar el resto de los tweets.
 
 ## 2. Extracción y etiquetado de datos
 
@@ -35,6 +35,11 @@ Se creó un modelo de clasificación por cada capa definida en la sección anter
 1. **Clasificacion**: Modelo de regresión logística, combinado con [embeddings](https://huggingface.co/hiiamsid/sentence_similarity_spanish_es) creados a partir de BETO, pero entrenados para evaluar similaridad de texto.
 
 Adicionalmente, se hizó análisis de sentimiento de los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis).
+Para el modelo de ciudadanos se utilizaron 3 modelos de esta librería para realizar diferentes tipos de análisis.
+
+1. Análisis de sentimiento
+2. Análisis de emociones
+3. Análisis de discurso de odio.
 
 ### 3.1 Preprocesamiento
 
