@@ -63,13 +63,14 @@ El modelo de análisis de sentimiento no requería ser entrenado.
 
 ### 3.3 Otros variantes probadas
 
-Durante el entrenamiento y selección de los modelos predictivos, se probaron otras alternativas a los modelos nombrados anteriormente. Sin embargo, estas fueron descartadas por no tener el mismo rendimiento o tener un costo prohibitivo.
+Durante el entrenamiento y selección de los modelos predictivos, se probaron otras alternativas a los modelos nombrados anteriormente. Sin embargo, estas fueron descartadas por no mejorar las métricas utilizadas para evaluar los modelos o tener un costo prohibitivo para hacerse a gran escala (en el caso de GPT-3).
 
 Estas fueron las otras alternativas utilizadas:
 
 1. [Bag of words](https://en.wikipedia.org/wiki/Bag-of-words_model) en vez de embeddings de BETO.
-2. Otros algoritmos en vez de regresión logística, tales como [LightGBM](https://en.wikipedia.org/wiki/LightGBM), [Random forest](https://en.wikipedia.org/wiki/Random_forest) o [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine).
-3. Ajuste fino de GPT-3.
+2. Otros modelos preentrenados tales como [BERTIN](https://huggingface.co/bertin-project/bertin-roberta-base-spanish) y [MarIA](https://huggingface.co/PlanTL-GOB-ES/roberta-base-bne)
+3. Otros algoritmos en vez de regresión logística, tales como [LightGBM](https://en.wikipedia.org/wiki/LightGBM), [Random forest](https://en.wikipedia.org/wiki/Random_forest) o [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine).
+4. Ajuste fino de GPT-3. 
 
 ## 4. Métricas reportadas
 
