@@ -10,7 +10,7 @@ Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadanos en re
 
 Se extrajeron los últimos 3200 tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los ayuntamientos españoles a través de la API de Twitter. Una vez obtenidos se procedió al etiquetado de una muestra representativa de los mismos utilizando [Doccano](https://github.com/doccano/doccano), para luego crear los modelos de clasificación con dichos datos.
 
-En total, se extrajeron 440697 tweets, se tradujeron (aprox. 20% no estaban en castellano) y se creo una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) (a nivel de ayuntamientos) de 2.498 tweets, que posteriormente fueron etiquetados manualmente.
+En total, se extrajeron 440697 tweets, y se creo una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) de 2.498 tweets, que posteriormente fueron etiquetados manualmente.
 
 Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled_20220911.json`.
 
