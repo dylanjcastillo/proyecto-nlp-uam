@@ -98,9 +98,10 @@ Estas fueron las otras alternativas utilizadas:
 
 Para todos los modelos se reportan las siguientes métricas:
 
-1. [F1](https://en.wikipedia.org/wiki/F-score) (agregado y por clase)
-2. [Kappa](https://en.wikipedia.org/wiki/Cohen%27s_kappa)
-3. [Precision](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
-4. [Recall](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
+1. [F1](https://en.wikipedia.org/wiki/F-score) (promedio macro)
+2. [Acierto](https://machinelearningmastery.com/metrics-evaluate-machine-learning-algorithms-python/)
+3. [Kappa](https://en.wikipedia.org/wiki/Cohen%27s_kappa)
+4. [Precision](https://en.wikipedia.org/wiki/Precision_and_recall) (promedio macro)
+5. [Recall](https://en.wikipedia.org/wiki/Precision_and_recall) (promedio macro)
 
 Las métricas finales pueden ser consultadas [aquí](https://docs.google.com/spreadsheets/d/1AgQ7Q3mXEofbEznLNGbgg-_SptQnKgYF/edit#gid=220072818).
