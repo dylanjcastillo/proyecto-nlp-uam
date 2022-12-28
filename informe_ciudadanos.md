@@ -10,9 +10,9 @@ Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadanos en re
 
 Se extrajeron los últimos 3200 tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los ayuntamientos españoles a través de la API de Twitter. Una vez obtenidos se procedió al etiquetado de una muestra representativa de los mismos utilizando [Doccano](https://github.com/doccano/doccano), para luego crear los modelos de clasificación con dichos datos.
 
-En total, se extrajeron 440697 tweets, y se creo una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) de 2.498 tweets, que posteriormente fueron etiquetados manualmente.
+En total, se extrajeron 584686 tweets, de los cuales más del 20% no estaban en castellano y al final fueron utilizados únicamente los tweets en castellano quedando un total de 440697 tweets, para después crear una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) de 2.498 tweets, que posteriormente fueron etiquetados manualmente.
 
-Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled_20220911.json`.
+Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled_20221006.csv`.
 
 ### 2.1 Taxonomía utilizada
 
@@ -78,7 +78,7 @@ Se ha utilizado el mismo procedimiento: traducir los tweets que no están en cas
 
 ### 3.2 Entrenamiento de modelos
 
-1. Se siguió un proceso de validación cruzada de 10 folds. En cada fold, se entrenó un modelo de regresión logística y se optimizaron sus hiperparametros (C, penalty, class_weights) y se eligió el mejor modelo utilizando la métrica [F1](https://en.wikipedia.org/wiki/F-score).
+1. Se siguió un proceso de validación cruzada de 10 folds. En cada fold, se entrenó un modelo de regresión logística y se optimizaron sus hiperparametros (C, penalty, class_weights) y se eligió el mejor modelo utilizando la métrica [F1](https://en.wikipedia.org/wiki/F-score) (agregado y por clase).
 2. Una vez entrenados los modelos por fold, se generan las predicciones de cada modelo y se elige la predicción definitiva utilizando un proceso de [votación suave](https://machinelearningmastery.com/voting-ensembles-with-python/).
 3. Dado que las predicciones de los modelos no eran muy altas, para realizar las predicciones definitivas se entrenó el modelo con todos los datos de tweets etiquetados buscando con ello un precisión un poco mas alta
 
@@ -98,10 +98,10 @@ Estas fueron las otras alternativas utilizadas:
 
 Para todos los modelos se reportan las siguientes métricas:
 
-1. [F1](https://en.wikipedia.org/wiki/F-score) (promedio macro)
-2. [Acierto](https://machinelearningmastery.com/metrics-evaluate-machine-learning-algorithms-python/)
+1. [Accuracy](https://en.wikipedia.org/wiki/Accuracy_and_precision)
+2. [F1](https://en.wikipedia.org/wiki/F-score) (agregado y por clase)
 3. [Kappa](https://en.wikipedia.org/wiki/Cohen%27s_kappa)
-4. [Precision](https://en.wikipedia.org/wiki/Precision_and_recall) (promedio macro)
-5. [Recall](https://en.wikipedia.org/wiki/Precision_and_recall) (promedio macro)
+4. [Precision](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
+5. [Recall](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
 
 Las métricas finales pueden ser consultadas [aquí](https://docs.google.com/spreadsheets/d/1AgQ7Q3mXEofbEznLNGbgg-_SptQnKgYF/edit#gid=220072818).
