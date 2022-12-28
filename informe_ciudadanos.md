@@ -104,4 +104,4 @@ Para todos los modelos se reportan las siguientes métricas:
 4. [Precision](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
 5. [Recall](https://en.wikipedia.org/wiki/Precision_and_recall) (agregado y por clase)
 
-Las métricas finales pueden ser consultadas [aquí](https://docs.google.com/spreadsheets/d/1AgQ7Q3mXEofbEznLNGbgg-_SptQnKgYF/edit#gid=220072818).
+Las métricas finales pueden ser consultadas [aquí](https://docs.google.com/spreadsheets/d/13HnWomNd2f2YZAKTw5L3jBjAL8K13BFXG_m_TKTDxU4).
