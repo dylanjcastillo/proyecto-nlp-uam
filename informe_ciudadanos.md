@@ -8,73 +8,55 @@ Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadanos en re
 
 ## 2. Extracción y etiquetado de datos
 
-Se extrajeron los últimos 3200 tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los ayuntamientos españoles a través de la API de Twitter. Una vez obtenidos se procedió al etiquetado de una muestra representativa de los mismos utilizando [Doccano](https://github.com/doccano/doccano), para luego crear los modelos de clasificación con dichos datos.
+Se extrajeron los últimos tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los ayuntamientos españoles a través de la API de Twitter. Una vez obtenidos se procedió al etiquetado de una muestra representativa de los mismos utilizando [Doccano](https://github.com/doccano/doccano), para luego crear los modelos de clasificación con dichos datos.
 
-En total, se extrajeron 584686 tweets, de los cuales más del 20% no estaban en castellano y al final fueron utilizados únicamente los tweets en castellano quedando un total de 440697 tweets, para después crear una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) de 2.498 tweets, que posteriormente fueron etiquetados manualmente.
+Inicialmente, se extrajeron 584.686 tweets, de los cuáles se excluyeron los tweets que no estaban en castellano, los retweets y los tweets cuyos autores eran ayuntamientos españoles. Lo cuál resultó en XXXXXX tweets, a partir de los cuáles se creó una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) (a nivel de días) de 2.497 tweets, que posteriormente fueron etiquetados manualmente.
 
-Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled_20221006.csv`.
+Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled.csv`.
 
 ### 2.1 Taxonomía utilizada
 
-Para clasificar los tweets, se definió una taxonomía con 5 clases.
+Para clasificar los tweets, se entrenó un modelo aprendizaje automático con base en una taxonomía de 5 clases:
 
-Esta es la estructura definida:
+- Informativo demandante
+- Expresivo
+- Destructivo
+- Informativo colaborardor
+- Entretenido
 
-- **Clases**
-  - Informativo demandante
-  - Expresivo
-  - Destructivo
-  - Informativo colaborardor
-  - Entretenido
-  
+Adicionalmente, se utilizaron modelos preentrenados para evaluar las siguientes características de los tweets:
+
+1. **Análisis de sentimiento:**  
+  - Negativo
+  - Neutral
+  - Positivo
+    
+2. **Análisis de emociones:**
+  - Joy (Alegría)
+  - Sadness (Tristeza)
+  - Disgust (Asco)
+  - Anger (Rabia)
+  - Surprise (Sorpresa)
+  - Fear (Miedo)
+  - Others (Otras)
+    
+3. **Análisis de discurso de odio:**  
+  - Hateful (Odioso)
+  - Targeted (Dirigido)
+  - Agressive (Agresivo)
+ 
 
 ## 3. Creación de modelos predictivos
 
 Se creó un modelo de clasificación por cada capa definida en la sección anterior. Para ello, se utilizaron las librerías de Python [scikit-learn](https://scikit-learn.org/stable/) y [transformers](https://huggingface.co/docs/transformers/index), que contienen una gran variedad de algoritmos de aprendizaje automático especializados en procesamiento de lenguaje natural. En concreto, se han utilizado los siguientes algoritmos:
 
-1. **Clasificacion**: Modelo de regresión logística, combinado con [embeddings](https://huggingface.co/hiiamsid/sentence_similarity_spanish_es) creados a partir de BETO, pero entrenados para evaluar similaridad de texto.
+1. Se creó un odelo de regresión logística, combinado con [embeddings](https://huggingface.co/hiiamsid/sentence_similarity_spanish_es) creados a partir de BETO, pero entrenados para evaluar similaridad de texto.
 
-Adicionalmente, se hizó análisis de sentimiento de los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis).
-Para el modelo de ciudadanos se utilizaron 3 modelos de esta librería para realizar diferentes tipos de análisis.
-
-1. **Análisis de sentimiento**
-  - 1.1. Clases usadas en el modelo:
-  
-    · Negativo
-    
-    · Neutral
-    
-    · Positivo
-    
-2. **Análisis de emociones**
-  - 2.1. Clases usadas en el modelo:
-  
-    · Joy
-    
-    · Sadness
-    
-    · Disguts
-    
-    · Anger
-    
-    · Surprise
-    
-    · Fear
-    
-    · Others
-    
-3. **Análisis de discurso de odio**
-  - 3.1. Clases usadas en el modelo:
-  
-    · Hatefull
-    
-    · Targeted
-    
-    · Agressive
+2. Se analizaron los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis) para extraer características de sentimiento, emociones y discurso de odio.
 
 ### 3.1 Preprocesamiento
 
-Se ha utilizado el mismo procedimiento: traducir los tweets que no están en castellano a castellano, quitar enlaces, reemplazar emojis por palabras y quitar "@".
+Se quitaron los tweets que no estaban en castellano, los retweets y aquellos tweets cuyo autor era un ayuntamiento español. Luego, a nivel del texto, se quitaron enlaces, reemplazaron emojis por palabras y se quitó el símbolo utilizado para referirse a un usuario ("@").
 
 ### 3.2 Entrenamiento de modelos
 
@@ -82,11 +64,11 @@ Se ha utilizado el mismo procedimiento: traducir los tweets que no están en cas
 2. Una vez entrenados los modelos por fold, se generan las predicciones de cada modelo y se elige la predicción definitiva utilizando un proceso de [votación suave](https://machinelearningmastery.com/voting-ensembles-with-python/).
 3. Dado que las predicciones de los modelos no eran muy altas, para realizar las predicciones definitivas se entrenó el modelo con todos los datos de tweets etiquetados buscando con ello un precisión un poco mas alta
 
-El modelo de análisis de sentimiento no requería ser entrenado.
+Los modelos de análisis de sentimiento, emociones y discurso de odio no requerían ser entrenados.
 
 ### 3.3 Otros variantes probadas
 
-Durante el entrenamiento y selección de los modelos predictivos, se probaron otras alternativas a los modelos nombrados anteriormente. Sin embargo, estas fueron descartadas por no tener el mismo rendimiento o tener un costo prohibitivo.
+Durante el entrenamiento y selección de los modelos predictivos, se probaron otras alternativas a los modelos nombrados anteriormente. Sin embargo, estas fueron descartadas por tener un rendimiento inferior al modelo seleccionado.
 
 Estas fueron las otras alternativas utilizadas:
 
