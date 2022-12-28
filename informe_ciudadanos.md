@@ -27,23 +27,23 @@ Para clasificar los tweets, se entrenó un modelo aprendizaje automático con ba
 Adicionalmente, se utilizaron modelos preentrenados para evaluar las siguientes características de los tweets:
 
 1. **Análisis de sentimiento:**  
-  - Negativo
-  - Neutral
-  - Positivo
+    - Negativo
+    - Neutral
+    - Positivo
     
 2. **Análisis de emociones:**
-  - Joy (Alegría)
-  - Sadness (Tristeza)
-  - Disgust (Asco)
-  - Anger (Rabia)
-  - Surprise (Sorpresa)
-  - Fear (Miedo)
-  - Others (Otras)
+    - Joy (Alegría)
+    - Sadness (Tristeza)
+    - Disgust (Asco)
+    - Anger (Rabia)
+    - Surprise (Sorpresa)
+    - Fear (Miedo)
+    - Others (Otras)
     
 3. **Análisis de discurso de odio:**  
-  - Hateful (Odioso)
-  - Targeted (Dirigido)
-  - Agressive (Agresivo)
+    - Hateful (Odioso)
+    - Targeted (Dirigido)
+    - Agressive (Agresivo)
  
 
 ## 3. Creación de modelos predictivos
