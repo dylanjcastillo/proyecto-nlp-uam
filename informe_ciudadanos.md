@@ -75,6 +75,7 @@ Estas fueron las otras alternativas utilizadas:
 1. [Bag of words](https://en.wikipedia.org/wiki/Bag-of-words_model) en vez de embeddings de BETO.
 2. Otros algoritmos en vez de regresión logística, tales como [LightGBM](https://en.wikipedia.org/wiki/LightGBM), [Random forest](https://en.wikipedia.org/wiki/Random_forest) o [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine).
 3. Modelo [BETO](https://huggingface.co/dccuchile/bert-base-spanish-wwm-cased) haciendo un ajuste fino con los datos disponibles.
+4. Aumentar datos de entrenamiento utilizando datos sintéticos.
 
 ## 4. Métricas reportadas
 
