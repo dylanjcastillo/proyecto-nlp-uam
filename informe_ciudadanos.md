@@ -10,7 +10,7 @@ Para ello se obtuvieron los últimos 3200 tweets publicados por ciudadanos en re
 
 Se extrajeron los últimos tweets publicados por ciudadanos en respuesta o con mención a las cuentas oficiales de los ayuntamientos españoles a través de la API de Twitter. Una vez obtenidos se procedió al etiquetado de una muestra representativa de los mismos utilizando [Doccano](https://github.com/doccano/doccano), para luego crear los modelos de clasificación con dichos datos.
 
-Inicialmente, se extrajeron 584.686 tweets, de los cuáles se excluyeron los tweets que no estaban en castellano, los retweets y los tweets cuyos autores eran ayuntamientos españoles. Lo cuál resultó en XXXXXX tweets, a partir de los cuáles se creó una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) (a nivel de días) de 2.497 tweets, que posteriormente fueron etiquetados manualmente.
+Inicialmente, se extrajeron 584.686 tweets, de los cuáles se excluyeron los tweets que no estaban en castellano, los retweets y los tweets cuyos autores eran ayuntamientos españoles. Lo cuál resultó en 135.998 tweets, a partir de los cuáles se creó una [muestra estratificada](https://es.wikipedia.org/wiki/Muestreo_estratificado) (a nivel de días) de 2.497 tweets, que posteriormente fueron etiquetados manualmente.
 
 Los tweets etiquetados se encuentran disponibles en el fichero `all_citizens_labeled.csv`.
 
@@ -54,6 +54,8 @@ Se creó un modelo de clasificación por cada capa definida en la sección anter
 
 2. Se analizaron los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis) para extraer características de sentimiento, emociones y discurso de odio.
 
+3. Adicionalmente, se clasificó como `usuario_relacional` cualquier tweet que hiciera mención de otra cuenta de twitter. Es decir, si '@' estaba contenido en el texto. 
+
 ### 3.1 Preprocesamiento
 
 Se quitaron los tweets que no estaban en castellano, los retweets y aquellos tweets cuyo autor era un ayuntamiento español. Luego, a nivel del texto, se quitaron enlaces, reemplazaron emojis por palabras y se quitó el símbolo utilizado para referirse a un usuario ("@").
@@ -62,8 +64,6 @@ Se quitaron los tweets que no estaban en castellano, los retweets y aquellos twe
 
 1. Se siguió un proceso de validación cruzada de 10 folds. En cada fold, se entrenó un modelo de regresión logística y se optimizaron sus hiperparametros (C, penalty, class_weights) y se eligió el mejor modelo utilizando la métrica [F1](https://en.wikipedia.org/wiki/F-score) (agregado y por clase).
 2. Una vez entrenados los modelos por fold, se generan las predicciones de cada modelo y se elige la predicción definitiva utilizando un proceso de [votación suave](https://machinelearningmastery.com/voting-ensembles-with-python/).
-3. Dado que las predicciones de los modelos no eran muy altas, para realizar las predicciones definitivas se entrenó el modelo con todos los datos de tweets etiquetados buscando con ello un precisión un poco mas alta
-
 Los modelos de análisis de sentimiento, emociones y discurso de odio no requerían ser entrenados.
 
 ### 3.3 Otros variantes probadas
