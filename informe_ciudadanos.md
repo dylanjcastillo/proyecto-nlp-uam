@@ -44,17 +44,17 @@ Adicionalmente, se utilizaron modelos preentrenados para evaluar las siguientes 
     - Hateful (Odioso)
     - Targeted (Dirigido)
     - Agressive (Agresivo)
- 
+
+Además, se utilizó una regla predefinida para clasificar si los tweets provenian de un **usuario relacional**. En este caso, se clasificó como `usuario_relacional` cualquier tweet que hiciera mención de otra cuenta de twitter. Es decir, si '@' estaba contenido en el texto. 
 
 ## 3. Creación de modelos predictivos
 
 Se creó un modelo de clasificación por cada capa definida en la sección anterior. Para ello, se utilizaron las librerías de Python [scikit-learn](https://scikit-learn.org/stable/) y [transformers](https://huggingface.co/docs/transformers/index), que contienen una gran variedad de algoritmos de aprendizaje automático especializados en procesamiento de lenguaje natural. En concreto, se han utilizado los siguientes algoritmos:
 
-1. Se creó un odelo de regresión logística, combinado con [embeddings](https://huggingface.co/hiiamsid/sentence_similarity_spanish_es) creados a partir de BETO, pero entrenados para evaluar similaridad de texto.
+1. Se creó un modelo de regresión logística, combinado con [embeddings](https://huggingface.co/hiiamsid/sentence_similarity_spanish_es) creados a partir de BETO, pero entrenados para evaluar similaridad de texto.
 
 2. Se analizaron los tweets utilizando la librería de Python [pysentimiento](https://huggingface.co/finiteautomata/beto-sentiment-analysis) para extraer características de sentimiento, emociones y discurso de odio.
 
-3. Adicionalmente, se clasificó como `usuario_relacional` cualquier tweet que hiciera mención de otra cuenta de twitter. Es decir, si '@' estaba contenido en el texto. 
 
 ### 3.1 Preprocesamiento
 
